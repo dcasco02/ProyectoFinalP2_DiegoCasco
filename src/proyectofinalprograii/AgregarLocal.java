@@ -42,11 +42,11 @@ public class AgregarLocal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         JT_latitud = new javax.swing.JTextField();
         JF_latitud = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        JT_longitud = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         JT_Nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        JB_AgregarAreas = new javax.swing.JButton();
         Nombre_Area = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         JB_AgregarLocal = new javax.swing.JButton();
@@ -77,7 +77,12 @@ public class AgregarLocal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("Nombre");
 
-        jButton2.setText("Agregar Areas");
+        JB_AgregarAreas.setText("Agregar Areas");
+        JB_AgregarAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_AgregarAreasActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -104,7 +109,7 @@ public class AgregarLocal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JB_AgregarLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(JT_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JT_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(115, 115, 115)
@@ -121,11 +126,11 @@ public class AgregarLocal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(84, 84, 84))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Nombre_Area, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65))))))
+                                .addGap(65, 65, 65))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(JB_AgregarAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,9 +152,9 @@ public class AgregarLocal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JF_latitud, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JB_AgregarAreas, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JT_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -198,15 +203,26 @@ public class AgregarLocal extends javax.swing.JFrame {
             }
         }
         if(!existe){
-            try {
-                locales.add(new Local(JT_Nombre.getText(),JF_latitud.getAlignmentX(),JF_latitud.getAlignmentY()));
-                JOptionPane.showMessageDialog(null,"Se ha guardado exitosamente");
-                    this.dispose();
-            } catch (ParseException ex) {
-                Logger.getLogger(Registro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            locales.add(new Local(JT_Nombre.getText(),JF_latitud.getAlignmentX(),JT_longitud.getAlignmentY()));
+            JOptionPane.showMessageDialog(null,"Se ha guardado exitosamente");
         }
     }//GEN-LAST:event_JB_AgregarLocalActionPerformed
+
+    private void JB_AgregarAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_AgregarAreasActionPerformed
+        // TODO add your handling code here:
+        boolean existe = false;
+        for(Area nombrearea:areas){
+            if(nombrearea.getNombrearea().equalsIgnoreCase(Nombre_Area.getText())){
+                 JOptionPane.showMessageDialog(null, "Usuario ya Existe");
+                existe = true;
+                break;
+            }
+        }
+        if(!existe){
+            areas.add(new Area(Nombre_Area.getText()));
+            JOptionPane.showMessageDialog(null,"Se ha guardado exitosamente");
+        }
+    }//GEN-LAST:event_JB_AgregarAreasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,13 +261,14 @@ public class AgregarLocal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JB_AgregarAreas;
     private javax.swing.JButton JB_AgregarLocal;
     private javax.swing.JLabel JF_latitud;
     private javax.swing.JTextField JT_Nombre;
     private javax.swing.JTextField JT_latitud;
+    private javax.swing.JTextField JT_longitud;
     private javax.swing.JTextField Nombre_Area;
     private javax.swing.JButton Salir;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -259,8 +276,8 @@ public class AgregarLocal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
     ArrayList <Local> locales;
+    ArrayList <Area> areas;
 }
 
