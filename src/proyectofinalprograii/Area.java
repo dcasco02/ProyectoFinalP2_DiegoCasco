@@ -22,7 +22,6 @@ public class Area {
     public Area(String nombrearea) {
         this.nombrearea = nombrearea;
     }
-
     
     public String getNombrearea() {
         return nombrearea;
@@ -47,8 +46,6 @@ public class Area {
     public void setStaff(ArrayList<Empleado> staff) {
         this.staff = staff;
     }
-
- 
 
     @Override
     public String toString() {
