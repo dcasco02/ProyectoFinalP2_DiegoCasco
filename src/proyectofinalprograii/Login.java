@@ -7,6 +7,7 @@ package proyectofinalprograii;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,7 +78,7 @@ public class Login extends javax.swing.JFrame {
         JF_latitud = new javax.swing.JLabel();
         JT_longitud = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        JT_Nombre1 = new javax.swing.JTextField();
+        JF_longitud = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         JB_AgregarAreas = new javax.swing.JButton();
         Nombre_Area = new javax.swing.JTextField();
@@ -413,7 +414,7 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JB_AgregarLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JT_Nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JF_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JT_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(Salir2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -463,7 +464,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(JT_Nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JF_longitud, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -652,7 +653,8 @@ public class Login extends javax.swing.JFrame {
             }
         }
         if(!existe){
-            clientes.add(new Cliente(JT_Nombre.getText(),JT_Identidad.getText().toInt,JT_correoelec.getText(),JC_Discapacidad.isSelected(),JS_CantidadTrans.getComponentCount(),CB_TipoTrans.getSelectedItem().toString()));
+            int identidad = Integer.parseInt(JT_Identidad.getText());
+            clientes.add(new Cliente(JT_Nombre.getText(),identidad,JT_correoelec.getText(),JC_Discapacidad.isSelected(),JS_CantidadTrans.getComponentCount(),CB_TipoTrans.getSelectedItem().toString()));
             JOptionPane.showMessageDialog(null,"Se ha guardado exitosamente");
         }
     }//GEN-LAST:event_AgregarClienteActionPerformed
@@ -692,7 +694,9 @@ public class Login extends javax.swing.JFrame {
             }
         }
         if(!existe){
-            locales.add(new Local(JT_Nombre.getText(),JF_latitud.getAlignmentX(),JT_longitud.getAlignmentY()));
+            float latitud= Float.parseFloat(JF_latitud.getText());
+            float longitud=Float.parseFloat(JF_longitud.getText());
+            locales.add(new Local(JT_Nombre.getText(),latitud,longitud));
             JOptionPane.showMessageDialog(null,"Se ha guardado exitosamente");
         }
     }//GEN-LAST:event_JB_AgregarLocalActionPerformed
@@ -745,10 +749,10 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JCheckBox JC_Discapacidad;
     private javax.swing.JPasswordField JF_Password;
     private javax.swing.JLabel JF_latitud;
+    private javax.swing.JTextField JF_longitud;
     private javax.swing.JSpinner JS_CantidadTrans;
     private javax.swing.JTextField JT_Identidad;
     private javax.swing.JTextField JT_Nombre;
-    private javax.swing.JTextField JT_Nombre1;
     private javax.swing.JTextArea JT_NumeroTicket;
     private javax.swing.JTextField JT_Usuario;
     private javax.swing.JTextField JT_correoelec;
@@ -787,4 +791,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTree jTree1;
     private javax.swing.JButton jb_Login;
     // End of variables declaration//GEN-END:variables
+ArrayList <Cliente> clientes;
+ArrayList <Local> locales;
+ArrayList <Area> areas;
 }
