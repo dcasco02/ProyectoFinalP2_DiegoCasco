@@ -5,6 +5,9 @@
  */
 package proyectofinalprograii;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dcasc
@@ -73,6 +76,11 @@ public class Clientemenu extends javax.swing.JFrame {
         JC_Discapacidad.setText("Tiene Discapacidades ");
 
         AgregarCliente.setText("Agregar");
+        AgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarClienteActionPerformed(evt);
+            }
+        });
 
         JT_NumeroTicket.setColumns(20);
         JT_NumeroTicket.setRows(5);
@@ -196,6 +204,23 @@ public class Clientemenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_SalirActionPerformed
 
+    private void AgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarClienteActionPerformed
+        // TODO add your handling code here:
+        boolean existe = false;
+        for (Cliente nombre: clientes ){
+            if(nombre.getNombre().equalsIgnoreCase(JT_Nombre.getText())){
+                JOptionPane.showMessageDialog(null, "Usuario ya Existe");
+                existe = true;
+                break;
+                
+            }
+        }
+        if(!existe){
+            clientes.add(new Cliente(JT_Nombre.getText(),JT_Identidad.getText().toInt,JT_correoelec.getText(),JC_Discapacidad.isSelected(),JS_CantidadTrans.getComponentCount(),CB_TipoTrans.getSelectedItem().toString()));
+            JOptionPane.showMessageDialog(null,"Se ha guardado exitosamente");
+        }
+    }//GEN-LAST:event_AgregarClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,4 +275,5 @@ public class Clientemenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+    ArrayList <Cliente> clientes;
 }

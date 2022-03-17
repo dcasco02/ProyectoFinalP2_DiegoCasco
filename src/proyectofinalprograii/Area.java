@@ -14,6 +14,8 @@ import java.util.ArrayList;
 public class Area {
     private String nombrearea;
     ArrayList transaciones =new ArrayList();
+    private String tipo;
+    private int tiempopromedio;
     ArrayList <Empleado> staff = new ArrayList();
 
     public Area() {
@@ -45,6 +47,22 @@ public class Area {
 
     public void setStaff(ArrayList<Empleado> staff) {
         this.staff = staff;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getTiempopromedio() {
+        return tiempopromedio;
+    }
+
+    public void setTiempopromedio(int tiempopromedio) {
+        this.tiempopromedio = tiempopromedio;
     }
 
     @Override
